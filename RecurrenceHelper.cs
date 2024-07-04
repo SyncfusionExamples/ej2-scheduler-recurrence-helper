@@ -685,7 +685,7 @@ namespace ScheduleSample
                                 var monthStart = new DateTime(addDate.Year, monthIndex, 1);
                                 DateTime weekStartDate = monthStart.AddDays(-(int)(monthStart.DayOfWeek));
                                 var monthStartWeekday = (int)(monthStart.DayOfWeek);
-                                int nthweekDay = GetWeekDay(BYDAYVALUE) - 1;
+                                int nthweekDay = GetWeekDay(BYDAYVALUE);
                                 int nthWeek;
                                 int bySetPos = 0;
                                 int setPosCount;
