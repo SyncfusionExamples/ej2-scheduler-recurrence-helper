@@ -679,6 +679,7 @@ namespace ScheduleSample
                         else if (UNTIL != null)
                         {
                             bool IsUntilDateReached = false;
+                            DateTime prev = DateTime.MaxValue;
                             while (!IsUntilDateReached)
                             {
                                 var weekCount = MondaysInMonth(addDate);
@@ -731,13 +732,26 @@ namespace ScheduleSample
                                     addDate = weekStartDate.AddDays((nthWeek) * 7);
                                     addDate = addDate.AddDays(nthweekDay);
                                 }
-                                if (addDate.CompareTo(startDate.Date) < 0)
+                                if(addDate != prev.AddYears(-1))
+                                {
+                                    if(addDate.CompareTo(startDate.Date) < 0)
+                                    {
+                                        addDate = addDate.AddYears(1);
+                                        prev = addDate;
+                                        continue;
+                                    }
+                                }else{
+                                    addDate = prev;
+                                }
+                                /* if (addDate.CompareTo(startDate.Date) < 0)
                                 {
                                     addDate = addDate.AddYears(1);
                                     continue;
-                                }
+                                } */
                                 if (DateTime.Compare(addDate.Date, Convert.ToDateTime(UNTIL)) <= 0)
                                 {
+                                    int setPosRes;
+                                    int.TryParse(BYSETPOSCOUNT,out setPosRes);
                                     if (weekCount == 6 && addDate.Day == 23)
                                     {
                                         int days = DateTime.DaysInMonth(addDate.Year, addDate.Month);
@@ -768,7 +782,7 @@ namespace ScheduleSample
                                         }
                                         addDate = addDate.AddYears(YyYearGap);
                                     }
-                                    else if (!(addDate.Day <= 23 && int.Parse(BYSETPOSCOUNT) == -1))
+                                    else if (!(addDate.Day <= 23 && setPosRes == -1))
                                     {
                                         RecDateCollection.Add(addDate.Date);
                                         addDate = addDate.AddYears(YyYearGap);
