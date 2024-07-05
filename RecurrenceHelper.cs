@@ -743,11 +743,6 @@ namespace ScheduleSample
                                 }else{
                                     addDate = prev;
                                 }
-                                /* if (addDate.CompareTo(startDate.Date) < 0)
-                                {
-                                    addDate = addDate.AddYears(1);
-                                    continue;
-                                } */
                                 if (DateTime.Compare(addDate.Date, Convert.ToDateTime(UNTIL)) <= 0)
                                 {
                                     int setPosRes;
