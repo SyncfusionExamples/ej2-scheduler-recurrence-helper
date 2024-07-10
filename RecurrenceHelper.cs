@@ -679,8 +679,6 @@ namespace ScheduleSample
                         else if (UNTIL != null)
                         {
                             bool IsUntilDateReached = false;
-                            DateTime prevDate = new DateTime();
-
                             while (!IsUntilDateReached)
                             {
                                 var weekCount = MondaysInMonth(addDate);
@@ -728,19 +726,33 @@ namespace ScheduleSample
                                     var lastDate = ScheduleUtils.LastDateOfMonth(monthStart);
                                     addDate = ScheduleUtils.GetWeekFirstDate(lastDate, nthweekDay);
                                 }
+                                if(setPosCount == 0)
+                                {
+                                    while(!IsUntilDateReached)
+                                    {
+                                        if(int.Parse(BYMONTHCOUNT) == addDate.Month)
+                                        {
+                                            GetWeeklyDateCollection(addDate,weeklyRule,RecDateCollection);
+                                            addDate = addDate.AddDays(1);
+                                        }
+                                        else
+                                        {
+                                            addDate = addDate.AddMonths(1);
+                                        }
+                                        if(addDate.CompareTo(endDate) > 0)
+                                        {
+                                            IsUntilDateReached = true;
+                                        }
+                                    }   
+                                }
                                 else
                                 {
                                     addDate = weekStartDate.AddDays((nthWeek) * 7);
                                     addDate = addDate.AddDays(nthweekDay);
-                                    if (addDate.CompareTo(prevDate) < 0)
-                                    {
-                                        addDate = prevDate;
-                                    }
                                 }
                                 if (addDate.CompareTo(startDate.Date) < 0)
                                 {
                                     addDate = addDate.AddYears(1);
-                                    prevDate = addDate;
                                     continue;
                                 }
                                 if (DateTime.Compare(addDate.Date, Convert.ToDateTime(UNTIL)) <= 0)
