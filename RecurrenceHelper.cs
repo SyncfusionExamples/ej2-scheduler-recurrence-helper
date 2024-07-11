@@ -726,24 +726,24 @@ namespace ScheduleSample
                                     var lastDate = ScheduleUtils.LastDateOfMonth(monthStart);
                                     addDate = ScheduleUtils.GetWeekFirstDate(lastDate, nthweekDay);
                                 }
-                                if(setPosCount == 0)
+                                else if (setPosCount == 0)
                                 {
-                                    while(!IsUntilDateReached)
+                                    while (!IsUntilDateReached)
                                     {
-                                        if(int.Parse(BYMONTHCOUNT) == addDate.Month)
+                                        if (int.Parse(BYMONTHCOUNT) == addDate.Month)
                                         {
-                                            GetWeeklyDateCollection(addDate,weeklyRule,RecDateCollection);
+                                            GetWeeklyDateCollection(addDate, weeklyRule, RecDateCollection);
                                             addDate = addDate.AddDays(1);
                                         }
                                         else
                                         {
                                             addDate = addDate.AddMonths(1);
                                         }
-                                        if(addDate.CompareTo(endDate) > 0)
+                                        if (addDate.CompareTo(endDate) > 0)
                                         {
                                             IsUntilDateReached = true;
                                         }
-                                    }   
+                                    }
                                 }
                                 else
                                 {
