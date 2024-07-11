@@ -119,7 +119,7 @@ namespace ScheduleSample
                     summary += (space + "day(s)");
                     break;
                 case "WEEKLY":
-                    summary += space + ( "week(s)") + space + ( "on") + space;
+                    summary += space + ("week(s)") + space + ("on") + space;
                     string[] days = weeklyByDay.Split('=')[1].Split(',');
                     int index = 0;
                     foreach (string day in days)
@@ -132,11 +132,11 @@ namespace ScheduleSample
 
                     break;
                 case "MONTHLY":
-                    summary += space + ( "months(s)") + space + ( "on");
+                    summary += space + ("months(s)") + space + ("on");
                     summary += GetMonthSummary(totalDays, byMonthDayCount, byDayValue, bySetPosCount);
                     break;
                 case "YEARLY":
-                    summary += space + ( "year(s)") + space + ("on") + space;
+                    summary += space + ("year(s)") + space + ("on") + space;
                     summary += totalMonths[int.Parse(byMonthCount, CultureInfo.InvariantCulture) - 1];
                     summary += GetMonthSummary(totalDays, byMonthDayCount, byDayValue, bySetPosCount);
                     break;
@@ -149,7 +149,7 @@ namespace ScheduleSample
             else if (!string.IsNullOrEmpty(untilValue))
             {
                 var tempDate = DateTime.ParseExact(untilValue, "yyyyMMddTHHmmssZ", CultureInfo.CurrentCulture);
-                summary += comma + space + ( "until") + space + tempDate.Day + space + totalMonths[tempDate.Month - 1] + space + tempDate.Year;
+                summary += comma + space + ("until") + space + tempDate.Day + space + totalMonths[tempDate.Month - 1] + space + tempDate.Year;
             }
 
             return summary;
@@ -165,9 +165,9 @@ namespace ScheduleSample
             }
             else if (!string.IsNullOrEmpty(byDayValue))
             {
-                int nthweekDay = GetWeekDay(byDayValue) -1;
+                int nthweekDay = GetWeekDay(byDayValue) - 1;
                 var pos = int.Parse(bySetPosCount, CultureInfo.InvariantCulture) - 1;
-                var weekPos = pos > -1 ?  weekPositions[pos] : weekPositions[weekPositions.Length -1];
+                var weekPos = pos > -1 ? weekPositions[pos] : weekPositions[weekPositions.Length - 1];
                 summary += weekPos + " " + days[nthweekDay];
             }
 
@@ -725,6 +725,25 @@ namespace ScheduleSample
                                 {
                                     var lastDate = ScheduleUtils.LastDateOfMonth(monthStart);
                                     addDate = ScheduleUtils.GetWeekFirstDate(lastDate, nthweekDay);
+                                }
+                                else if (setPosCount == 0)
+                                {
+                                    while (!IsUntilDateReached)
+                                    {
+                                        if (int.Parse(BYMONTHCOUNT) == addDate.Month)
+                                        {
+                                            GetWeeklyDateCollection(addDate, weeklyRule, RecDateCollection);
+                                            addDate = addDate.AddDays(1);
+                                        }
+                                        else
+                                        {
+                                            addDate = addDate.AddMonths(1);
+                                        }
+                                        if (addDate.CompareTo(endDate) > 0)
+                                        {
+                                            IsUntilDateReached = true;
+                                        }
+                                    }
                                 }
                                 else
                                 {
