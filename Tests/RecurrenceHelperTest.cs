@@ -1254,7 +1254,6 @@ public class RecurrenceServiceCheck
         //    };
         //Assert.Equal(Expected_, Actual_);
 
-        // ST issue -> ES-896441
         List<DateTime> Actual_st = ActualResult(new DateTime(2024, 1, 1), "FREQ=YEARLY;BYMONTH=1;BYDAY=SU,MO,TU,WE,TH,FR,SA;UNTIL=20250131T235959Z;");
         List<DateTime> Excepted_st = new List<DateTime>
         {
