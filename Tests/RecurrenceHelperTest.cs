@@ -1253,6 +1253,33 @@ public class RecurrenceServiceCheck
         //        new DateTime(2061,10,22),
         //    };
         //Assert.Equal(Expected_, Actual_);
+
+        List<DateTime> Actual_st = ActualResult(new DateTime(2024, 1, 1), "FREQ=YEARLY;BYMONTH=1;BYDAY=SU,MO,TU,WE,TH,FR,SA;UNTIL=20250131T235959Z;");
+        List<DateTime> Excepted_st = new List<DateTime>
+        {
+            new DateTime(2024,1,1), new DateTime(2024,1,2), new DateTime(2024,1,3),
+            new DateTime(2024,1,4), new DateTime(2024,1,5), new DateTime(2024,1,6),
+            new DateTime(2024,1,7), new DateTime(2024,1,8), new DateTime(2024,1,9),
+            new DateTime(2024,1,10), new DateTime(2024,1,11), new DateTime(2024,1,12),
+            new DateTime(2024,1,13), new DateTime(2024,1,14), new DateTime(2024,1,15),
+            new DateTime(2024,1,16), new DateTime(2024,1,17), new DateTime(2024,1,18),
+            new DateTime(2024,1,19), new DateTime(2024,1,20), new DateTime(2024,1,21),
+            new DateTime(2024,1,22), new DateTime(2024,1,23), new DateTime(2024,1,24),
+            new DateTime(2024,1,25), new DateTime(2024,1,26), new DateTime(2024,1,27),
+            new DateTime(2024,1,28), new DateTime(2024,1,29), new DateTime(2024,1,30),
+            new DateTime(2024,1,31), new DateTime(2025,1,1), new DateTime(2025,1,2),
+            new DateTime(2025,1,3), new DateTime(2025,1,4), new DateTime(2025,1,5),
+            new DateTime(2025,1,6), new DateTime(2025,1,7), new DateTime(2025,1,8),
+            new DateTime(2025,1,9), new DateTime(2025,1,10), new DateTime(2025,1,11),
+            new DateTime(2025,1,12), new DateTime(2025,1,13), new DateTime(2025,1,14),
+            new DateTime(2025,1,15), new DateTime(2025,1,16), new DateTime(2025,1,17),
+            new DateTime(2025,1,18), new DateTime(2025,1,19), new DateTime(2025,1,20),
+            new DateTime(2025,1,21), new DateTime(2025,1,22), new DateTime(2025,1,23),
+            new DateTime(2025,1,24), new DateTime(2025,1,25), new DateTime(2025,1,26),
+            new DateTime(2025,1,27), new DateTime(2025,1,28), new DateTime(2025,1,29),
+            new DateTime(2025,1,30), new DateTime(2025,1,31)
+        };
+        Assert.Equal(Excepted_st, Actual_st);
     }
 
 
